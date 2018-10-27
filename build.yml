@@ -1,0 +1,12 @@
+#!/bin/bash
+mkdir /tmp/ron
+cd /tmp/ron
+git clone https://github.com/ronmustala/demo.git 
+cd /tmp/ron/demo/demo
+/usr/local/apache-maven/apache-maven-3.5.4/bin/mvn clean install 
+cp /tmp/ron/demo/demo/target/demo-0.0.1-SNAPSHOT.war /tmp/ron/demo/multiply.war
+
+# Copy war file to S3
+aws s3 mb s3://xxxxx --region us-east-1 
+aws s3 cp /tmp/ron/demo/multiply.war s3://demo-harmony/multiply.war
+
