@@ -1,0 +1,18 @@
+#!/bin/bash
+yum install java -y 
+mkdir /opt/tomcat
+cd /opt/tomcat
+wget http://mirrors.ocf.berkeley.edu/apache/tomcat/tomcat-8/v8.5.34/bin/apache-tomcat-8.5.34.tar.gz
+tar -zxvf apache-tomcat-8.5.34.tar.gz
+cd /opt/tomcat/apache-tomcat-8.5.34/bin
+chmod 700 /opt/tomcat/apache-tomcat-8.5.34/bin/*.sh
+#ln -s /opt/tomcat/apache-tomcat-8.5.34/bin/startup.sh /usr/bin/tomcat-startup
+#ln -s /opt/tomcat/apache-tomcat-8.5.34/bin/shutdown.sh /usr/bin/tomcat-shutdown
+/opt/tomcat/apache-tomcat-8.5.34/bin/shutdown.sh
+/opt/tomcat/apache-tomcat-8.5.34/bin/startup.sh
+mkdir /tmp/multiply
+cd /tmp/multiply
+wget https://s3.amazonaws.com/demo-harmony/multiply.war
+cp multiply.war /opt/tomcat/apache-tomcat-8.5.34/webapps
+/opt/tomcat/apache-tomcat-8.5.34/bin/shutdown.sh
+/opt/tomcat/apache-tomcat-8.5.34/bin/startup.sh
